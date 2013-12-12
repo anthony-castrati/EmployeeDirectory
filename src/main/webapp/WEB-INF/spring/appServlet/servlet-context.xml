@@ -17,7 +17,7 @@
 
 	<!-- Properties -->
 	<context:property-placeholder order="0" ignore-resource-not-found="true" ignore-unresolvable="true" location="classpath:/application.properties" />
-	<context:property-placeholder order="-1" ignore-resource-not-found="true" ignore-unresolvable="true" location="file:${props.file}" />
+	<context:property-placeholder order="-1" ignore-resource-not-found="true" ignore-unresolvable="true" location="file:${propsFile}" />
 	
 	<beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 	  <beans:property name="viewResolvers">
