@@ -3,7 +3,7 @@ body{
  	font-size:100%/1.5;
  	font-family: 'Lato', sans-serif;
  	color:#515151;
- 	background:#D7DADB;
+ 	background:#ECECEC;
 }
 a {
 	color:#00B4FF;
@@ -37,27 +37,27 @@ form input, form select {
 	margin-bottom: 1em;
 	padding:0.25em 1em;
 	font-size:1.1em;
-	border: 2px solid #ebebeb;
+	border: 2px solid #dedede;
 	border-radius: 4px;
-	-webkit-box-shadow: inset 0 -2px #ebebeb;
-	box-shadow: inset 0 -2px #ebebeb;
+	-webkit-box-shadow: inset 0 -2px #dedede;
+	box-shadow: inset 0 -2px #dedede;
 }
 header {
-	background:#2C3E50;
+	background:#3c61a5;
 	padding:1em;
 	position: relative;
 	z-index: 1;
 	line-height: 4em;
 	text-align: center;
-	border-bottom: 0.25em solid #202d3a;
+	border-bottom: 0.25em solid #23488C;
 	-webkit-box-shadow: inset 0 -1px rgba(255,255,255,0.05),0 1px rgba(0,0,0,0.05);
 	box-shadow: inset 0 -1px rgba(255,255,255,0.05),0 1px rgba(0,0,0,0.05);
 }
 h1{
  	font-size: 2em;
  	font-weight:normal;
- 	color:#D7DADB;
- 	text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+ 	color:#fff;
+ 	text-shadow: 2px 8px 6px rgba(0,0,0,0.2);
 }
 h2{
 	font-size:2em;
@@ -102,6 +102,7 @@ footer p{
 	border-radius:100px;
 	width:100%;
 	max-width:100px;
+	max-height:100px;
 }
 .contactInfo{
 	position:relative;
@@ -136,20 +137,20 @@ footer p{
 	color: white;
 	text-align: center;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-	background: #f0776c;
+	background: #657838;
 	border: 0;
-	border-bottom: 2px solid #d76b60;
+	border-bottom: 2px solid #4C5F1F;
 	border-radius: 5px;
 	cursor: pointer;
-	-webkit-box-shadow: inset 0 -2px #d76b60;
-	box-shadow: inset 0 -2px #d76b60;
+	-webkit-box-shadow: inset 0 -2px #4C5F1F;
+	box-shadow: inset 0 -2px #4C5F1F;
  }
 @media only screen and (min-width: 40em) {
 	h1{
 	font-size: 3em;
 	}
 	.wrapper{
-	width:80%;
+	width:70%;
 	margin: 0 auto;
 	}
 	.person .icon-user:before {
@@ -159,12 +160,6 @@ footer p{
 	.contactInfo > ul {
 		width:49%;
 		vertical-align:top;
-	}
-	button, .button{
-		width: auto;
-		float: right;
-		margin-right: 5%;
-		padding: 0 3em;
 	}
 }
 .location {
@@ -181,23 +176,11 @@ footer p{
 #ErrorMessage{
 	color:red;
 }
-/**
-.location ul {
-	text-align: center;
-	padding: 0.25em;
-	text-shadow: 1px 1px 1px #fff;
-	background: rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
-	max-height: 100px;
-}*/
 
 .location ul {
 	text-align: center;
 	padding: 1em;
+	background: #8d8d8d;
 	background: rgba(0, 0, 0, .4);
 	box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, 0.4),inset 0 -8px 8px -8px rgba(0, 0, 0, 0.4);
 	max-height: 100px;
@@ -284,7 +267,7 @@ hr {
 	margin-right:0.25em;
 }
 button:hover, .button:hover {
-background: #ee695d;
+background: #586B2B;
 }
 button:active, .button:active {
 border:0;

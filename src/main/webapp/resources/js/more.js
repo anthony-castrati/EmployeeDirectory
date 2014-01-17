@@ -1,13 +1,13 @@
 $("#ShowAll").click(function(){
 	$('[name="showall"]').val('true');
-	$('form').submit();
+	$('#Search').click();
 });
 $('form').submit(function( event ) {
 	  if($('#Department').val() == "All Departments"){
 		  if($('#Name').val() == ""){
 			  $('#ErrorMessage').html("Please provide a name or department.");
 			  event.preventDefault();
-		  }else if($('#Name').val().trim().length < 2){
+		  }else if($.trim($('#Name').val()) != '' && $.trim($('#Name').val()).length < 2){
 			  $('#ErrorMessage').html("Name must be at least 2 characters.");
 			  event.preventDefault();
 		  }

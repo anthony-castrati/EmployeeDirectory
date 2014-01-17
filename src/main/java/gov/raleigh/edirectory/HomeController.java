@@ -90,7 +90,11 @@ public class HomeController {
 		session.setAttribute("count", results.size());
 		return "home";
 	}
-	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String searchGet( Locale locale, Model model) {
+		return home(locale, model);
+	}
+
 	@RequestMapping(value = "images/{uniqueid}", method = RequestMethod.GET)
 	public void getJson(@PathVariable String uniqueid, HttpServletResponse response, WebRequest request) throws IOException {
 		File f = new File(IMAGE_FOLDER + File.separator + uniqueid + ".jpg");
