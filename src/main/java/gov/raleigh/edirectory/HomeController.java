@@ -70,7 +70,7 @@ public class HomeController {
 	/**
 	 * Uses form inputs to search LDAP based on given input
 	 */
-	@RequestMapping(value = "search", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String search(HttpSession session, SearchForm searchForm, BindingResult bindResult, @RequestParam("showall") boolean showall, @RequestParam("name") String name, @RequestParam("department") String dept, Model model) {
 		
 		List<ContactDTO> results = searchService.getContacts(name, dept);
