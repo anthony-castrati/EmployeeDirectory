@@ -35,7 +35,7 @@
 	<div class="wrapper">
 			<article>
 				<section>
-					<form:form commandName="searchForm" method="post" role="form" onsubmit="_gaq.push(['_trackEvent','Search', $('#Department').val(), $('#Name').val(), , true]);">
+					<form:form commandName="searchForm" method="post" role="form">
 						<ul>
 							<li>
 								<form:label path="name" for="Name">
@@ -47,7 +47,7 @@
 							<li>
 								<form:label for="Department" path="department">
 									<form:select id="Department" path="department" value="${dept}">
-										<option>All Departments</option>
+										<option value="All Departments">All Departments</option>
 										<form:options items="${departments.departments}" />
 								</form:select>
 								</form:label>
@@ -121,29 +121,41 @@
 		</footer>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="resources/js/more.js"></script>
-		<!--Track mailto-->
+		<!--Track contact clicks-->
 		<script>
 		jQuery(document).ready(function($) {
-		    $('a[href^="mailto"]').click(function(){
-			_gaq.push(['_trackEvent', 'email', 'send', this.href.replace(/^mailto:/i, ''),,true]);    });
-		});
-		</script>
-		<!--End Track mailto-->
-		<!--Track tel-->
-		<script>
-		jQuery(document).ready(function($) {
-		    $('a[href^="tel"]').click(function(){
-			_gaq.push(['_trackEvent', 'phone', 'call', this.href.replace(/^tel:/i, ''),,true]);    });
-		});
-		</script>
-		<!--End Track tel-->
-		<!--Track location-->
-		<script>
-		jQuery(document).ready(function($) {
+			$('#searchForm').submit(function(event){
+				event.preventDefault();
+				_gaq.push(['_trackEvent','search', $('#Department').val(), $('#Name').val(), , true]);
+				var form = this;
+				setTimeout(function(){ form.submit()}, 100);
+			});
 		    $('.icon-location a').click(function(){
-			_gaq.push(['_trackEvent', 'location', 'expand',,,true]);    });
+				trackOutboundLink(this,'location','expand','');
+				return false;
+			});
+		    $('a[href^="tel"]').click(function(){
+		    	trackOutboundLink(this,'phone',this.href.replace(/^tel:/i, ''),'');
+				return false;
+			});
+		    $('a[href^="mailto"]').click(function(){
+		    	trackOutboundLink(this,'email',this.href.replace(/^mailto:/i, ''),'');
+				return false;
+			});
 		});
 		</script>
-		<!--End Track location-->
+		<script type="text/javascript">
+			function trackOutboundLink(link, category, action, label) { 
+				try { 
+					_gaq.push(['_trackEvent', category , action, label, , true]); 
+				} catch(err){
+					console.log("analytics failed to track event");
+				}
+				 
+				setTimeout(function() {
+					document.location.href = link.href;
+				}, 100);
+			}
+		</script>
 </body>
 </html>
