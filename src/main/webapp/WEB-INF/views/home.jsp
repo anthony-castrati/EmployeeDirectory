@@ -35,7 +35,7 @@
 	<div class="wrapper">
 			<article>
 				<section>
-					<form:form commandName="searchForm" method="post" role="form">
+					<form:form commandName="searchForm" method="post" role="form" onsubmit="_gaq.push(['_trackEvent','Search', $('#Department').val(), $('#Name').val(), , true]);">
 						<ul>
 							<li>
 								<form:label path="name" for="Name">
@@ -56,7 +56,7 @@
 							</li>
 							<li>
 								<label for="Search">
-									<input type="submit" id="Search" value="Search" class="button"/>
+									<input type="submit" id="Search" value="Search" class="button" />
 								</label>
 							</li>
 						</ul>
@@ -112,7 +112,7 @@
 					<hr/>
 				</c:forEach>
 				<c:if test="${(count > 20) && max < 20}">
-					<button id="ShowAll" type="button">Show All</button>
+					<button id="ShowAll" type="button" onclick="_gaq.push(['_trackEvent','ShowAll', , , , true]);">Show All</button>
 				</c:if>
 			</article>
 		</div>
@@ -121,5 +121,29 @@
 		</footer>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="resources/js/more.js"></script>
+		<!--Track mailto-->
+		<script>
+		jQuery(document).ready(function($) {
+		    $('a[href^="mailto"]').click(function(){
+			_gaq.push(['_trackEvent', 'email', 'send', this.href.replace(/^mailto:/i, ''),,true]);    });
+		});
+		</script>
+		<!--End Track mailto-->
+		<!--Track tel-->
+		<script>
+		jQuery(document).ready(function($) {
+		    $('a[href^="tel"]').click(function(){
+			_gaq.push(['_trackEvent', 'phone', 'call', this.href.replace(/^tel:/i, ''),,true]);    });
+		});
+		</script>
+		<!--End Track tel-->
+		<!--Track location-->
+		<script>
+		jQuery(document).ready(function($) {
+		    $('.icon-location a').click(function(){
+			_gaq.push(['_trackEvent', 'location', 'expand',,,true]);    });
+		});
+		</script>
+		<!--End Track location-->
 </body>
 </html>
