@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ehcache>
+<!-- defaults -->
+    <diskStore 
+        path="java.io.tmpdir"
+    />
+
+    <defaultCache 
+        maxElementsInMemory="5000" 
+        eternal="false" 
+        timeToIdleSeconds="0" 
+        timeToLiveSeconds="0" 
+        overflowToDisk="false" 
+        statistics="false"
+        >
+    </defaultCache>
+    
+    <cache 
+        name="departments" 
+        maxElementsInMemory="1" 
+        timeToLiveSeconds="600"
+        overflowToDisk="false"
+        statistics="false"
+        />
+    <cache 
+        name="queries" 
+        maxElementsInMemory="1000" 
+        timeToLiveSeconds="60"
+        overflowToDisk="false"
+        statistics="false"
+        />
+</ehcache>

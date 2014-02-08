@@ -28,6 +28,16 @@ public class ContactDTO implements Serializable {
 	private String phone = "";
 	private String mobile = "";
 	private String employeeID = "";
+	private boolean hasImage = false;
+	
+	public boolean getHasImage() {
+		return hasImage;
+	}
+
+	public void setHasImage(boolean hasImage) {
+		this.hasImage = hasImage;
+	}
+
 	private static final Logger logger = LoggerFactory.getLogger(ContactDTO.class);
 	public ContactDTO(){
 		

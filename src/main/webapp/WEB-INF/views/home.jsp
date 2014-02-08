@@ -48,7 +48,7 @@
 								<form:label for="Department" path="department">
 									<form:select id="Department" path="department" value="${dept}">
 										<option value="All Departments">All Departments</option>
-										<form:options items="${departments.departments}" />
+										<form:options items="${departments}" />
 								</form:select>
 								</form:label>
 							</li>
@@ -69,7 +69,15 @@
 				
 				<section class="person">
 					<div class="image">
-						<img data-src="images/${item.employeeID }" onerror="imgError(this);">
+						<c:choose>
+							<c:when test="${ item.hasImage }">
+								<img data-src="images/${item.employeeID }">
+							</c:when>
+							<c:otherwise>
+								<span class="icon-user"></span>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 					<div class="contactInfo">
 						<ul>
@@ -112,7 +120,7 @@
 					<hr/>
 				</c:forEach>
 				<c:if test="${(count > 20) && max < 20}">
-					<button id="ShowAll" type="button" onclick="_gaq.push(['_trackEvent','ShowAll', , , , true]);">Show All</button>
+					<button id="ShowAll" type="button">Show All</button>
 				</c:if>
 			</article>
 		</div>
@@ -121,41 +129,5 @@
 		</footer>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="resources/js/more.js"></script>
-		<!--Track contact clicks-->
-		<script>
-		jQuery(document).ready(function($) {
-			$('#searchForm').submit(function(event){
-				event.preventDefault();
-				_gaq.push(['_trackEvent','search', $('#Department').val(), $('#Name').val(), , true]);
-				var form = this;
-				setTimeout(function(){ form.submit()}, 100);
-			});
-		    $('.icon-location a').click(function(){
-				trackOutboundLink(this,'location','expand','');
-				return false;
-			});
-		    $('a[href^="tel"]').click(function(){
-		    	trackOutboundLink(this,'phone',this.href.replace(/^tel:/i, ''),'');
-				return false;
-			});
-		    $('a[href^="mailto"]').click(function(){
-		    	trackOutboundLink(this,'email',this.href.replace(/^mailto:/i, ''),'');
-				return false;
-			});
-		});
-		</script>
-		<script type="text/javascript">
-			function trackOutboundLink(link, category, action, label) { 
-				try { 
-					_gaq.push(['_trackEvent', category , action, label, , true]); 
-				} catch(err){
-					console.log("analytics failed to track event");
-				}
-				 
-				setTimeout(function() {
-					document.location.href = link.href;
-				}, 100);
-			}
-		</script>
 </body>
 </html>

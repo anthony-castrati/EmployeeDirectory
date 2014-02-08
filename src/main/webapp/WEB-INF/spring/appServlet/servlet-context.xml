@@ -3,15 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -37,12 +39,21 @@
         class="org.springframework.ldap.core.support.LdapContextSource">
         <beans:property name="url" value="${ldap.url}" />
         <beans:property name="base" value="${ldap.base}" />
-        <beans:property name="referral" value="${ldap.referral}" />  
-        
+        <beans:property name="referral" value="${ldap.referral}" />
         <beans:property name="userDn" value="${ldap.username}" />
 		<beans:property name="password" value="${ldap.password}" />
     </beans:bean>
    <beans:bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
         <beans:constructor-arg ref="contextSource" />
     </beans:bean>
+    
+    <beans:bean id="ehCacheManager"
+        class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+        p:configLocation="classpath:ehcache.xml"
+        p:shared="false" />
+
+    <beans:bean id="cacheManager"
+        class="org.springframework.cache.ehcache.EhCacheCacheManager"
+        p:cacheManager-ref="ehCacheManager" />
+    <cache:annotation-driven cache-manager="cacheManager" />
 </beans:beans>
