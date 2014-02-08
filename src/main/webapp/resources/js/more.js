@@ -79,19 +79,6 @@ $(document).ready(function(){
 });
 
 /**
- * Handle profile image 404s by replacing with the user icon
- * 
- * @param image
- * @returns {Boolean}
- */
-//TODO Handle 404s differently because it is very noisy and there are too many requests.
-function imgError(image) {
-	$(image).after($('<span class="icon-user"></span>'));
-	$(image).remove();
-    return true;
-}
-
-/**
  * Shortcut code to track link clicks before the user leaves the page
  * 
  * @param link

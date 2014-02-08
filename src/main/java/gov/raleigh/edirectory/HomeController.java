@@ -48,10 +48,9 @@ public class HomeController {
 	private int CACHE_DURATION_IN_SECOND;
 	final long CACHE_DURATION_IN_MS = CACHE_DURATION_IN_SECOND * 1000;
 	@Autowired
-	private Departments departments;
-	@Autowired
 	SearchService searchService;
-
+	@Autowired
+	Departments departments;
 	public HomeController() {
 
 	}
@@ -65,7 +64,7 @@ public class HomeController {
 		SearchForm bean = new SearchForm();
 		model.addAttribute("searchForm", bean);
 
-		// model.addAttribute("departments", d.getDepartments());
+		model.addAttribute("departments", departments.getDepartments());
 
 		return "home";
 	}
@@ -94,6 +93,7 @@ public class HomeController {
 			}
 		});
 		session.setAttribute("count", results.size());
+		model.addAttribute("departments", departments.getDepartments());
 		return "home";
 	}
 

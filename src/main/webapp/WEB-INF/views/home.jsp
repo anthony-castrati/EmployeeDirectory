@@ -48,7 +48,7 @@
 								<form:label for="Department" path="department">
 									<form:select id="Department" path="department" value="${dept}">
 										<option value="All Departments">All Departments</option>
-										<form:options items="${departments.departments}" />
+										<form:options items="${departments}" />
 								</form:select>
 								</form:label>
 							</li>
@@ -69,7 +69,15 @@
 				
 				<section class="person">
 					<div class="image">
-						<img data-src="images/${item.employeeID }" onerror="imgError(this);">
+						<c:choose>
+							<c:when test="${ item.hasImage }">
+								<img data-src="images/${item.employeeID }">
+							</c:when>
+							<c:otherwise>
+								<span class="icon-user"></span>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 					<div class="contactInfo">
 						<ul>
