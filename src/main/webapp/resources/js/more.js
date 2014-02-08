@@ -46,22 +46,30 @@ $(document).ready(function(){
 	 * Show more results and track with analytics "showall"
 	 */
 	$("#ShowAll").click(function(){
+		event.preventDefault();
 		try { 
-			_gaq.push(['_trackEvent', 'showall' , '', '', , true]); 
+			_gaq.push(['_trackEvent', 'showall' , 'click', '', , true]); 
 		} catch(err){
 			console.log("analytics failed to track event");
 		}
 		 
 		setTimeout(function() {
-			//Do nothing, just tiemout
-		}, 100);
-		$('[name="showall"]').val('true');
-		$('#Search').click();
+			$('[name="showall"]').val('true');
+			$('#Search').click();
+		}, 150);
 	});
 	
 	//Track location clicks
     $('.icon-location a').click(function(){
-		trackOutboundLink(this,'location','expand','');
+    	try { 
+			_gaq.push(['_trackEvent', 'location' , 'click' , '', , true]); 
+		} catch(err){
+			console.log("analytics failed to track event");
+		}
+		 
+		setTimeout(function() {
+			//Do Nothing, just wait
+		}, 150);
 		return false;
 	});
     
@@ -73,7 +81,11 @@ $(document).ready(function(){
     
     //Track email clicks
     $('a[href^="mailto"]').click(function(){
-    	trackOutboundLink(this,'email',this.href.replace(/^mailto:/i, ''),'');
+    	var mail = this.href.replace(/^mailto:/i, '');
+    	if (mail == ""){
+    		mail = "email.address.missing@raleighnc.gov";
+    	}
+    	trackOutboundLink(this,'email',mail,'');
 		return false;
 	});
 });
@@ -95,5 +107,5 @@ function trackOutboundLink(link, category, action, label) {
 	 
 	setTimeout(function() {
 		document.location.href = link.href;
-	}, 100);
+	}, 150);
 }
