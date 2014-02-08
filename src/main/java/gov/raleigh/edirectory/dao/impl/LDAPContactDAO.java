@@ -32,25 +32,20 @@ public class LDAPContactDAO implements ContactDAO {
 	private int PAGE_SIZE;
 	@Value("#{'${ldap.returnedAttrs}'.split(',')}")
 	private List<String> returnedAttrs;
+	@Value("${ldap.userquery}")
+	private String userQuery;
 	@Autowired
 	private LdapTemplate ldapTemplate;
 	
 	@Override
 	public List getDepartments() {
-		final HashSet<String> departments = new HashSet<String>();
-		
-		AndFilter filter = new AndFilter();
-		filter.and(new EqualsFilter("objectClass","user"));
-		filter.and(new LikeFilter("department","*"));
-		filter.and(new EqualsFilter("objectCategory","person"));
-		filter.and(new NotFilter(new EqualsFilter("userAccountControl:1.2.840.113556.1.4.803:","2")));
 		CollectingNameClassPairCallbackHandler handler = new AttributesMapperCallbackHandler(new AttributesMapper() {
 			public String mapFromAttributes(Attributes attrs) throws NamingException {
 				return (String) attrs.get("department").get();
 	        }
 		});
 		
-		return query(filter.encode(),handler);
+		return query(userQuery,handler);
 	}
 	
 	@Override
@@ -58,6 +53,7 @@ public class LDAPContactDAO implements ContactDAO {
 		AndFilter filter = new AndFilter();
 		filter.and(new EqualsFilter("objectClass","user"));
 		filter.and(new LikeFilter("department",department));
+		filter.and(new LikeFilter("employeeID","*"));
 		filter.and(new LikeFilter("displayName","*"));
 		filter.and(new EqualsFilter("objectCategory","person"));
 		filter.and(new NotFilter(new EqualsFilter("userAccountControl:1.2.840.113556.1.4.803:","2")));

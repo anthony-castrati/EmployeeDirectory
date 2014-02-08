@@ -23,8 +23,8 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public HashSet<String> getDepartments() {
-		HashSet departments = new HashSet();
-		List depts = contactDao.getDepartments();
+		HashSet<String> departments = new HashSet<String>();
+		List<String> depts = contactDao.getDepartments();
 		Iterator<String> iter = depts.iterator();
 		while(iter.hasNext()){
 			departments.add((String) iter.next());

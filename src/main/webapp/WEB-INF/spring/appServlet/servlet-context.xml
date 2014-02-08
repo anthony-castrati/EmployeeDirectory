@@ -37,8 +37,7 @@
         class="org.springframework.ldap.core.support.LdapContextSource">
         <beans:property name="url" value="${ldap.url}" />
         <beans:property name="base" value="${ldap.base}" />
-        <beans:property name="referral" value="${ldap.referral}" />  
-        
+        <beans:property name="referral" value="${ldap.referral}" />
         <beans:property name="userDn" value="${ldap.username}" />
 		<beans:property name="password" value="${ldap.password}" />
     </beans:bean>
