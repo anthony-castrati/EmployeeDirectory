@@ -11,7 +11,6 @@
         timeToIdleSeconds="0" 
         timeToLiveSeconds="0" 
         overflowToDisk="false" 
-        statistics="false"
         >
     </defaultCache>
     
@@ -20,13 +19,11 @@
         maxElementsInMemory="1" 
         timeToLiveSeconds="600"
         overflowToDisk="false"
-        statistics="false"
         />
     <cache 
         name="queries" 
         maxElementsInMemory="1000" 
         timeToLiveSeconds="60"
         overflowToDisk="false"
-        statistics="false"
         />
 </ehcache>
